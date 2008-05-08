@@ -1,0 +1,2 @@
+export(BCE, plot.bce, pairs.bce, export.bce, summary.bce, rescaleRows)
+
