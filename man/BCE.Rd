@@ -2,11 +2,9 @@
 \alias{BCE}
 \title{Bayesian Composition Estimator}
 \description{estimates probability distributions of a sample composition
-  based on 
-  \item an \bold{input ratio matrix}, \code{Rat}, containing biomarker ratios in (field)
-  samples, and 
-  \item an \bold{input data matrix}, \code{Dat}, containing the biomarker
-  ratios for several taxonomic groups}
+  based on an \bold{input ratio matrix}, \code{Rat}, containing
+  biomarker ratios in (field) samples, and an \bold{input data matrix},
+  \code{Dat}, containing the biomarker ratios for several taxonomic groups}
 \usage{BCE(Rat, Dat, relsdRat = 0, abssdRat = 0, minRat = 0, 
 maxRat = +Inf, relsdDat = 0, abssdDat = 0, tol = 1e-4, tolX = 1e-4, 
 positive = 1:ncol(Rat), iter = 100, outputlength = 1000, 
@@ -57,12 +55,13 @@ confInt = 2/3, export = FALSE, file = "BCE")}
     to the initial ratio matrix}
   \item{initX }{composition matrix used to start the markov chain:
     default the LSEI solution of Ax=B}
-  \item{userProb }{posterior probability for a given ratio matrix and
-    composition matrix: should be a function with 2 arguments RAT and X,
-    and as returned value a number giving the -log posterior probability
-    of ratio matrix RAT and composition matrix X.  Dependence of the
-    probability on the data should be incorporated in the function. If not
-    specified, the default probability distribution is the gamma function}
+  \item{userProb }{function taking two arguments: ratio matrix RAT and
+    composition matrix X, and returning the posterior probability.
+    Dependence of the probability on the data should be incorporated in
+    the function. If not specified, the default probability distribution
+    is the product of a non-informative distribution on the composition
+    matrix, and gamma distributions for the ratio matrix and the data
+    given the model output. }
   \item{confInt }{confidence interval in output; because the
     distributions may not be symmetrical, standard deviations are not
     always a useful measure; instead, upper and lower boundaries of the
@@ -80,7 +79,7 @@ confInt = 2/3, export = FALSE, file = "BCE")}
   elements of a taxonomical composition matrix \code{X} and a ratio
   matrix \code{Rat} for which:
 
-  \deqn{X\%*\%Rat \simeq Dat}
+  \deqn{X\%*\%Rat \simeq Dat}{X\%*\%Rat ~= Dat}
   
   It does this by returning \code{iter} samples for X and Rat, organized
   in three-dimensional arrays. The input
@@ -172,6 +171,12 @@ confInt = 2/3, export = FALSE, file = "BCE")}
     to get a random pattern in the output.}
   }
 }
+
+\references{
+  Van den Meersche, K., K. Soetaert and J.J. Middelburg (2008) \emph{A
+    Bayesian compositional estimator for microbial taxonomy
+    based on biomarkers}, Limnology and Oceanography Methods 6, 190-199
+  }
  
 \seealso{
   \code{\link{summary.bce}}, \code{\link{plot.bce}},

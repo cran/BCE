@@ -45,16 +45,16 @@ lsei1 <- function(A,                     # search x for which min||Ax-B||
                  G,                     # Gx>H
                  H)                     # Gx>H
   {
-    require(quadprog,quietly=TRUE)
+    ## require(quadprog,quietly=TRUE)
 
-    dvec  <- t(A) %*% B
-    Dmat  <- t(A) %*% A
-    Amat  <- t(rbind(E,G))
-    bvec  <- c(F,H)
-    solve.QP(Dmat ,dvec, Amat , bvec, meq=1)$solution
+    ## dvec  <- t(A) %*% B
+    ## Dmat  <- t(A) %*% A
+    ## Amat  <- t(rbind(E,G))
+    ## bvec  <- c(F,H)
+    ## solve.QP(Dmat ,dvec, Amat , bvec, meq=1)$solution
 
     ## require(limSolve,quietly=TRUE)
-    ## lsei(A,B,E,F,G,H)$X
+    lsei(A,B,E,F,G,H)$X
   }
 
 
@@ -173,6 +173,9 @@ BCE <- function(
       ##=======================================##
       ## initialise mcmc objects
       ##=======================================##
+      if (burninlength>=iter) stop("The burninlength
+defines the number of iterations to be removed from the analysis.
+This burninlength cannot be smaller than iter, the total number of iterations!")
       ou <- ceiling((iter-burninlength)/outputlength)
       iter <- iter-(iter-burninlength)%%ou
       outputlength <- (iter-burninlength)%/%ou
@@ -492,7 +495,7 @@ summary.bce <- function(object,           # a bce-object, output of the function
       lx <- length(X)/length(logp)
 
       
-      w <- which.min(logp)
+      w <- which.max(logp)
       bestLogp <- logp[w]
 
       quantile1 <- function(x) quantile(x,probs=c((1-confInt)/2,1/2,(1+confInt)/2))
