@@ -14,8 +14,8 @@
   of the taxonomic composition of the field sample.
 }
 
-\usage{tlsce(A, B, Wa=NULL, optimizationfunction="nlminb",
-  A_init=A, Xratios=TRUE, ...)
+\usage{tlsce(A, B, Wa=NULL, Wb=NULL, minA=NULL, maxA=NULL,
+       A_init=A, Xratios=TRUE, ...)
 }
 
 \arguments{
@@ -30,12 +30,20 @@
   \item{Wa }{weighting of A, a matrix with the same dimensions of A. If
     \code{Wa=NULL}, Wa defaults to 1. This parameter can be used to give
     more importance to elements of A or A in total compared to
-    B. Weighting of B is not possible. the weights are implemented as
+    B. weights are implemented as
     proportional to \eqn{1/s} (as opposed to \eqn{1/s^2}) with s the
     standard deviation of the error term.
   }
-  \item{optimizationfunction }{the function used for the optimization of
-    A (one of "nlminb","optim","constrOptim").
+  \item{Wb }{weighting of B, a matrix with the same dimensions of B. If
+    \code{Wb=NULL}, Wb defaults to 1. This parameter can be used to give
+    more importance to elements of B or B in total compared to
+    A. weights are implemented as
+    proportional to \eqn{1/s} (as opposed to \eqn{1/s^2}) with s the
+    standard deviation of the error term.
+  }
+  \item{minA }{minimum values for A
+  }
+  \item{maxA }{maximum values for A
   }
   \item{A_init }{a matrix with the same structure as A. a general,
     non-linear optimization routine (default \code{nlminb}) is used to
@@ -46,9 +54,22 @@
     algorithm, one can provide different starting values for the
     optimization routine in A\_init.}
   \item{Xratios }{TRUE or FALSE: are the colSums of the matrix X equal
-    to 1? This is for example the case in a compositional matrix.}
-  \item{...}{Arguments to be passed to the optimization function in
-    use.
+    to 1? This is for example the case in a compositional matrix.
+    (only if A and B are both expressed
+    relative to the unit of biomass) if
+    Xratios =TRUE, A has pigment
+    concentrations per biomass unit, B
+    has pigment concentrations per
+    biomass unit per sample, and X
+    contains ratios of biomass unit per
+    sample.  if Xratios =FALSE, A has
+    pigment concentrations per biomass
+    unit, B has pigment concentrations
+    per sample, and X has biomass units
+    per sample
+  }
+  \item{...}{Arguments to be passed to lsei()
+    or to modFit()
   }
 }
 
@@ -56,7 +77,8 @@
   instead of a linear least squares regression, in which the
   elements of A would be fixed, the function \code{tlsce} includes the
   non-zero elements of A in the least squares regression. This is
-  similar to other total least squares regression methods, with the main
+  similar to other total least squares regression methods (also called
+  orthogonal regression), with the main
   difference that only non-zero elements of A contain an error term. 
 }  
 

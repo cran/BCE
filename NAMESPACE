@@ -1,2 +1,6 @@
-export(BCE, plot.bce, pairs.bce, export.bce, summary.bce, rescaleRows, tlsce)
-
+importFrom(Matrix, bdiag)
+import(limSolve, FME)
+export(bce1, BCE, plot.bce, pairs.bce, export.bce, summary.bce, rescaleRows, tlsce)
+S3method("plot", "bce")
+S3method("pairs", "bce")
+S3method("summary", "bce")

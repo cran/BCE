@@ -5,17 +5,24 @@
   produces summary plots of the random walks of the BCE; these are
   intended for inspection only.
 }
-\usage{plot.bce(x,...)}
+\usage{
+\method{plot}{bce}(x, \dots)
+}
 
 \arguments{
-  \item{x }{bce object.
+  \item{x }{an object of class bce and/or _modMCMC_. Output of one of
+  the functions \code{\link{BCE}} or \code{\link{bce1}}. 
   }
   \item{... }{additional arguments.
   }
 }
 
 \details{
-  Calling the plot-function with a bce-object as argument, will produce
+  When the argument an object is of class _modMCMC_, which is the case
+  if it is the output of \code{bce1()}, it is treated as such (see
+  \code{\link{modMCMC}}). 
+  
+  Calling the plot-function with the output of \code{\link{BCE}} as argument, will produce
   a series of plots with the random walks of each variable. The layout
   of these plots is kept very sober, as they are primarily intended for
   inspection of the random walk (see \code{\link{BCE}}). Users
