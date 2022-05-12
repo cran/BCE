@@ -289,8 +289,8 @@ for (i in 1:nr)
 pairs(bceOutput,sample=3,main="Station 3")
 
 }
-\author{Karel Van den Meersche <k.vdmeersche@nioo.knaw.nl>,
-  Karline Soetaert <k.soetaert@nioo.knaw.nl>.
+\author{Karel Van den Meersche <karel.van_den_meersche@cirad.fr>,
+  Karline Soetaert <karline.soetaert@nioz.nl>.
 }
 \keyword{models}
 

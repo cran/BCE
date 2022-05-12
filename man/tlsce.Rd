@@ -48,7 +48,7 @@
   \item{A_init }{a matrix with the same structure as A. a general,
     non-linear optimization routine (default \code{nlminb}) is used to
     minimize the sum of squared residuals of A versus the fitted matrix
-    A\_fit (see falue). This optimization routine requires a set of
+    A\_fit (see value). This optimization routine requires a set of
     starting values, by default the non-zero elements of A. This
     provides a good fit, but when in doubt about the convergence of the
     algorithm, one can provide different starting values for the
@@ -121,8 +121,8 @@ tlsce(A,B)
 ## weighting Wa inversely proportional to A
 tlsce(A,B,Wa=1/A)
 }
-\author{Karel Van den Meersche <k.vdmeersche@nioo.knaw.nl>,
-  Karline Soetaert <k.soetaert@nioo.knaw.nl>
+\author{Karel Van den Meersche <karel.van_den_meersche@cirad.fr>,
+  Karline Soetaert <karline.soetaert@nioz.nl>
 }
 \keyword{models}
 

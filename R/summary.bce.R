@@ -1,5 +1,5 @@
 summary.bce <- function(object,           # a bce-object, output of the function bce1() or BCE()
-                        confInt=2/3, # confidence interval of values of composion matrix and ratio matrix
+                        confInt=2/3, # confidence interval of values of composition matrix and ratio matrix
                         ...)            # additional arguments affecting the summary produced
   ## extract best, mean, sd, upper and lower boundaries, and covariance
   {
